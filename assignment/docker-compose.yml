@@ -1,0 +1,41 @@
+version: '3.8'
+
+networks:
+  pentagi-network:
+    driver: bridge
+    name: pentagi-network
+
+services:
+  dvwa:
+    image: vulnerables/web-dvwa
+    container_name: dvwa
+    ports:
+      - "8080:80"
+    networks:
+      - pentagi-network
+
+  neo4j:
+    image: neo4j:latest
+    container_name: neo4j
+    ports:
+      - "7474:7474"
+      - "7687:7687"
+    environment:
+      - NEO4J_AUTH=neo4j/devpassword
+    networks:
+      - pentagi-network
+
+  pentagi:
+    image: vxcontrol/pentagi:latest
+    container_name: pentagi
+    ports:
+      - "8443:8443"
+    environment:
+      - LLM_SERVER_URL=https://openrouter.ai/api/v1
+      - LLM_SERVER_KEY=${LLM_SERVER_KEY}
+      - LLM_SERVER_MODEL=qwen/qwen2.5-72b-instruct
+    depends_on:
+      - dvwa
+      - neo4j
+    networks:
+      - pentagi-network

@@ -1,0 +1,11 @@
+{
+  "model_name": "Qwen2.5 72B Instruct",
+  "model_id": "qwen/qwen2.5-72b-instruct",
+  "token_pricing": {
+    "input_per_1m_tokens": 0.36,
+    "output_per_1m_tokens": 0.40
+  },
+  "context_window": 131072,
+  "justification": "Qwen2.5 72B Instruct was selected for this security audit task due to its cost-effectiveness with both input and output pricing below $1.00 per million tokens, meeting the budget requirement. The model offers a large 131,072 token context window sufficient for comprehensive security audit documentation. With 2.96B weekly tokens usage on OpenRouter, it demonstrates high reliability and availability. The model excels at structured tool-calling and step-by-step reasoning required for penetration testing workflows.",
+  "pricing_evidence": "https://openrouter.ai/qwen/qwen2.5-72b-instruct"
+}
